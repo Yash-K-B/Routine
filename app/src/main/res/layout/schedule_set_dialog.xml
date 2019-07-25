@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00B8D4"
+    android:padding="25dp">
+    <TextView
+        android:id="@+id/text_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:fontFamily="@font/dampfplatzsh"
+        android:textSize="30sp"
+        android:text="1.  10:00-10"/>
+    <TextView
+        android:id="@+id/mon"
+        android:layout_below="@+id/text_schedule"
+        android:layout_marginTop="15dp"
+        android:background="#E6E6E6"
+        android:textColor="#757575"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:text="Mon" />
+    <TextView
+        android:id="@+id/tue"
+        android:layout_below="@+id/text_schedule"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/mon"
+        android:layout_marginLeft="10dp"
+        android:background="#E6E6E6"
+        android:layout_width="34dp"
+        android:textColor="#757575"
+        android:layout_height="30dp"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:text="Tue" />
+    <TextView
+        android:id="@+id/wed"
+        android:layout_below="@+id/text_schedule"
+        android:layout_marginTop="15dp"
+        android:background="#E6E6E6"
+        android:layout_toRightOf="@+id/tue"
+        android:layout_marginLeft="10dp"
+        android:layout_width="34dp"
+        android:textColor="#757575"
+        android:layout_height="30dp"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:text="Wed" />
+    <TextView
+        android:id="@+id/thu"
+        android:layout_below="@+id/text_schedule"
+        android:layout_marginTop="15dp"
+        android:background="#E6E6E6"
+        android:layout_toRightOf="@+id/wed"
+        android:layout_marginLeft="10dp"
+        android:layout_width="34dp"
+        android:textColor="#757575"
+        android:layout_height="30dp"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:text="Thu" />
+    <TextView
+        android:id="@+id/fri"
+        android:layout_below="@+id/text_schedule"
+        android:layout_marginTop="15dp"
+        android:background="#E6E6E6"
+        android:layout_toRightOf="@+id/thu"
+        android:layout_marginLeft="10dp"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:textColor="#757575"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:text="Fri" />
+    <TextView
+        android:id="@+id/sat"
+        android:layout_below="@+id/text_schedule"
+        android:layout_marginTop="15dp"
+        android:background="#E6E6E6"
+        android:layout_toRightOf="@+id/fri"
+        android:layout_marginLeft="10dp"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:textColor="#757575"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:text="Sat" />
+
+    <EditText
+        android:id="@+id/text_monday"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/mon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_editetxt1"
+        android:hint="subject name"
+        android:inputType="textCapWords"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+    <TextView
+        android:id="@+id/dummy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_schedule"/>
+    <TextView
+        android:id="@+id/l_mon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monday"
+        android:layout_below="@+id/dummy"
+        android:layout_marginTop="36dp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="italic"
+        android:background="@drawable/custom_editext2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="12sp"/>
+
+    <EditText
+        android:id="@+id/text_tuesday"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/text_monday"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_editetxt1"
+        android:hint="subject name"
+        android:inputType="textCapWords"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
+    <TextView
+        android:id="@+id/l_tue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/l_mon"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/custom_editext2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="Tuesday"
+        android:textSize="12sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/text_wednesday"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/text_tuesday"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_editetxt1"
+        android:hint="subject name"
+        android:inputType="textCapWords"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+    <TextView
+        android:id="@+id/l_wed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wednesday"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/l_tue"
+        android:layout_marginLeft="20dp"
+        android:textStyle="italic"
+        android:background="@drawable/custom_editext2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="12sp"/>
+
+    <EditText
+        android:id="@+id/text_thursday"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/text_wednesday"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_editetxt1"
+        android:hint="subject name"
+        android:inputType="textCapWords"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+    <TextView
+        android:id="@+id/l_thu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thursday"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/l_wed"
+        android:layout_marginLeft="20dp"
+        android:textStyle="italic"
+        android:background="@drawable/custom_editext2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="12sp"/>
+
+    <EditText
+        android:id="@+id/text_friday"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/text_thursday"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_editetxt1"
+        android:hint="subject name"
+        android:inputType="textCapWords"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+    <TextView
+        android:id="@+id/l_fri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Friday"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/l_thu"
+        android:layout_marginLeft="20dp"
+        android:textStyle="italic"
+        android:background="@drawable/custom_editext2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="12sp"/>
+
+    <EditText
+        android:id="@+id/text_saturday"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/text_friday"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_editetxt1"
+        android:hint="subject name"
+        android:inputType="textCapWords"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
+    <TextView
+        android:id="@+id/l_sat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/l_fri"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/custom_editext2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="Saturday"
+        android:textSize="12sp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_below="@+id/text_saturday"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/button_blue_round"
+        android:textColor="#ffffff"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="cancel" />
+    <Button
+        android:id="@+id/button_next"
+        android:layout_below="@+id/text_saturday"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_blue_round"
+        android:textColor="#ffffff"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="Next" />
+
+
+
+</RelativeLayout>

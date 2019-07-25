@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center_horizontal"
+    android:scrollbarStyle="outsideOverlay"
+    tools:context="com.project.yash.TaskEnablerPage">
+
+
+    <RelativeLayout
+        android:id="@+id/cardView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:background="@drawable/black_gradient_90"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Class Time"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="280dp"
+            android:layout_height="1dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="#ffffff" />
+
+        <ScrollView
+            style="@android:style/Widget.Holo.Light.ScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:layout_marginTop="70dp"
+            android:scrollbarStyle="outsideInset"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/class_schedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="30dp"
+                    android:paddingBottom="20dp"
+                    android:text="Phase I:\n\nPhase II:"
+                    android:textColor="#FFD600"
+                    android:textSize="14dp"
+                    android:typeface="monospace" />
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button_load"
+            android:layout_width="250dp"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_click_view"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+
+            android:text="Activate Vibration Profile as per Class Schedule"
+            android:textAllCaps="false"
+            android:textColor="#C51162"
+
+            />
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_load"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:text="Vibration Profile Applied"
+            android:textColor="#64DD17"
+            android:typeface="sans" />
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

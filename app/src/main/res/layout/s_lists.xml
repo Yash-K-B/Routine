@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="60dp"
+    >
+
+    <TextView
+        android:id="@+id/stime"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="#651FFF"
+        android:paddingLeft="20dp"
+        android:textStyle="bold"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/subject"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="top"
+      android:textColor="#F50057"
+        android:paddingLeft="20dp"
+        android:typeface="serif"
+        android:textSize="13dp"
+        android:textStyle="italic"
+        android:layout_gravity="center_horizontal"
+        android:text="TextView" />
+</LinearLayout>
