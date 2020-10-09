@@ -19,9 +19,8 @@ public class Routines extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
 
-        for(int i=0; i<appWidgetIds.length; i++){
-            int currentWidgetId = appWidgetIds[i];
-            updateWidgetListView(context,appWidgetManager, currentWidgetId);
+        for (int currentWidgetId : appWidgetIds) {
+            updateWidgetListView(context, appWidgetManager, currentWidgetId);
             //Toast.makeText(context, "widget added", Toast.LENGTH_SHORT).show();
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds);
@@ -40,7 +39,7 @@ public class Routines extends AppWidgetProvider {
 
         Intent updateIntent = new Intent(context,this.getClass());
         updateIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-        int ids[] = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, Routines.class));
+        int[] ids = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, Routines.class));
         updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
         PendingIntent pendingIntent=PendingIntent.getBroadcast(context,appWidgetId,updateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         remoteViews.setOnClickPendingIntent(R.id.update_bt,pendingIntent);

@@ -6,7 +6,7 @@
     android:background="@android:color/transparent"
     android:gravity="center_horizontal"
     android:scrollbarStyle="outsideOverlay"
-    tools:context="com.project.yash.TaskEnablerPage">
+    tools:context="com.project.yash.ui.TaskEnablerPage">
 
 
     <RelativeLayout

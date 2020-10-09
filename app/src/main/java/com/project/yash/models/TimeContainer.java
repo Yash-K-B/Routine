@@ -1,8 +1,8 @@
-package com.project.yash;
+package com.project.yash.models;
 
 public class TimeContainer {
     int hour,minute;
-    TimeContainer(int x,int y)
+    public TimeContainer(int x,int y)
     {
         hour=x;
         minute=y;

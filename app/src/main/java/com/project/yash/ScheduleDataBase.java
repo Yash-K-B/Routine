@@ -33,6 +33,7 @@ public class ScheduleDataBase extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
+
     public Cursor getData()
     {
         db=this.getReadableDatabase();
@@ -40,19 +41,28 @@ public class ScheduleDataBase extends SQLiteOpenHelper {
         Log.i("data_service",sql);
         return db.rawQuery(sql,null);
     }
-    void removeRow()
+    public void removeRow()
     {
         db=this.getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from "+TABLE_NAME+";",null);
         if(cursor.getCount()>0)
             db.execSQL("delete from "+TABLE_NAME+";");
+        cursor.close();
         Log.i("data_service","All data of table removed");
     }
-    void insert(String []value)
-    {
-        db=this.getWritableDatabase();
-        String sql="Insert into "+TABLE_NAME+" values "+"(\""+value[0]+"\",\"null\",\""+value[1]+"\",\""+value[2]+"\",\""+value[3]+"\",\""+value[4]+"\",\""+value[5]+"\",\""+value[6]+"\");";
-        Log.i("data_service",sql);
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void insert(String []value) {
+        db = this.getWritableDatabase();
+        String sql = "Insert into " + TABLE_NAME + " values " + "(\"" + value[0] + "\",\"null\",\"" + value[1] + "\",\"" + value[2] + "\",\"" + value[3] + "\",\"" + value[4] + "\",\"" + value[5] + "\",\"" + value[6] + "\");";
+        Log.i("data_service", sql);
         db.execSQL(sql);
+    }
+    void onDestroy()
+    {
+        db.close();
     }
 }

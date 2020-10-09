@@ -1,6 +1,8 @@
 package com.project.yash;
 
 import android.os.Handler;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
@@ -19,6 +21,9 @@ import android.widget.Toast;
 import com.mancj.slideup.SlideUp;
 import com.mancj.slideup.SlideUpBuilder;
 import com.project.yash.routine.R;
+import com.project.yash.ui.ScheduleMakerPage;
+import com.project.yash.ui.SyncPage;
+import com.project.yash.ui.TaskEnablerPage;
 
 public class MainActivity extends AppCompatActivity {
     private SlideUp slideUp;
@@ -26,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Thread t;
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager viewPager;
+    public static final String[] PAGE_TITLE = {"Create Schedule","Set Profile","Sync"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,33 +74,37 @@ public class MainActivity extends AppCompatActivity {
 
         public SectionsPagerAdapter(FragmentManager fm) {
 
-            super(fm);
+            super(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            if(position==0)
-                return ScheduleMakerPage.newInstance();
-            else if(position==1)
-                return TaskEnablerPage.newFragment();
-            return TaskEnablerPage.newFragment();
+
+            switch (position){
+                case 0:
+                    return ScheduleMakerPage.newInstance();
+                case 1:
+                    return TaskEnablerPage.newFragment();
+                case 2:
+                    return new SyncPage();
+                default:
+                    return TaskEnablerPage.newFragment();
+            }
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 2;
+            // Show 2 total pages.
+            return 3;
         }
 
         @Nullable
         @Override
         public CharSequence getPageTitle(int position) {
-            if(position==0)
-            return "Create Schedule";
-
-            return "Set Profile";
+            return PAGE_TITLE[position];
         }
     }
     private boolean dbl_click=false;

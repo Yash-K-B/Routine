@@ -1,4 +1,4 @@
-package com.project.yash;
+package com.project.yash.ui;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.appwidget.AppWidgetManager;
@@ -9,8 +9,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +22,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.project.yash.ListAdapter;
+import com.project.yash.Routines;
+import com.project.yash.ScheduleDataBase;
+import com.project.yash.VibrationEnablerService;
 import com.project.yash.routine.R;
+import com.project.yash.storage.ScheduleDao;
+import com.project.yash.storage.ScheduleDatabase;
+import com.project.yash.storage.ScheduleEntity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,19 +40,25 @@ public class ScheduleMakerPage extends Fragment implements TimePickerDialog.OnTi
     ScheduleDataBase dataBase;
     Context context;
     int counter;
-    String values[][];
+    String[][] values;
     ListView lv;
     EditText editText1;
     View layout;
     List<String> data;
     boolean flag=false;
     ScheduleMakerPage scheduleMakerPage;
+    ScheduleDao scheduleDao;
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         context=this.getContext();
-        data=new ArrayList<String>();
-        View view=inflater.inflate(R.layout.own_schedule,container,false);
-        return view;
+        data= new ArrayList<>();
+        return inflater.inflate(R.layout.own_schedule,container,false);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        scheduleDao = ScheduleDatabase.getInstance(context).getScheduleDao();
     }
 
     public static ScheduleMakerPage newInstance() {
@@ -57,7 +70,7 @@ public class ScheduleMakerPage extends Fragment implements TimePickerDialog.OnTi
         return fragment;
     }
     @Override
-    public void onViewCreated(final View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, Bundle savedInstanceState) {
         dataBase=new ScheduleDataBase(context.getApplicationContext());
         layout=view;
         lv=(ListView)view.findViewById(R.id.schedules);
@@ -122,13 +135,13 @@ public class ScheduleMakerPage extends Fragment implements TimePickerDialog.OnTi
                 {
                     boolean tempFlag=false;
                     Pattern pattern=Pattern.compile("-");
-                    String arr[]=pattern.split(s,2);
-                    String arr2[]=pattern.split(p,2);
+                    String[] arr =pattern.split(s,2);
+                    String[] arr2 =pattern.split(p,2);
                     Pattern pattern1=Pattern.compile(":");
-                    String time_1[]=pattern1.split(arr[0],2);         //time_1[0] : time_2[1]
-                    String time_2[]=pattern1.split(arr[1],2);          //time1_1[0] : time1_2[1]
-                    String time1_1[]=pattern1.split(arr2[0],2);
-                    String time1_2[]=pattern1.split(arr2[1],2);
+                    String[] time_1 =pattern1.split(arr[0],2);         //time_1[0] : time_2[1]
+                    String[] time_2 =pattern1.split(arr[1],2);          //time1_1[0] : time1_2[1]
+                    String[] time1_1 =pattern1.split(arr2[0],2);
+                    String[] time1_2 =pattern1.split(arr2[1],2);
                     int h1=Integer.parseInt(time_1[0]);
                     int m1=Integer.parseInt(time_1[1]);
                     int h2=Integer.parseInt(time_2[0]);
@@ -396,6 +409,7 @@ public class ScheduleMakerPage extends Fragment implements TimePickerDialog.OnTi
                             }
                             else {
                                 dataBase.removeRow();
+                                scheduleDao.clear();
                                 //retrieving data entered
                                 values[counter][0]=data.get(counter);
                                 if(e1.getVisibility()!=View.GONE){
@@ -420,14 +434,14 @@ public class ScheduleMakerPage extends Fragment implements TimePickerDialog.OnTi
                                 data.clear();
                                 lv.invalidateViews();
                                 //checking data
-                                for(int i=0;i<values.length;i++)
-                                {
-                                    dataBase.insert(values[i]);
-                                    Log.i("data_service",values[i][0]+"/"+values[i][1]+"/"+values[i][2]+"/"+values[i][3]+"/"+values[i][4]+"/"+values[i][5]+"/"+values[i][6]+"/");
+                                for (String[] value : values) {
+                                    dataBase.insert(value);
+                                    scheduleDao.insert(new ScheduleEntity(value[0], value[1], value[2], value[3], value[4], value[5], value[6], null));
+                                    Log.i("data_service", value[0] + "/" + value[1] + "/" + value[2] + "/" + value[3] + "/" + value[4] + "/" + value[5] + "/" + value[6] + "/");
                                 }
                                 button2.setEnabled(false);
                                 button3.setEnabled(false);
-                                context.startService(new Intent(context,VibrationEnablerService.class));
+                                context.startService(new Intent(context, VibrationEnablerService.class));
                                 //getActivity().recreate();
                                 Thread thread=new Thread(new Runnable() {
                                     @Override
@@ -439,7 +453,7 @@ public class ScheduleMakerPage extends Fragment implements TimePickerDialog.OnTi
                                         {
                                             e.printStackTrace();
                                         }
-                                        Intent intent=new Intent(context,Routines.class);
+                                        Intent intent=new Intent(context, Routines.class);
                                         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
                                         AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
                                         int[] ids = widgetManager.getAppWidgetIds(new ComponentName(context,Routines.class));
@@ -501,7 +515,7 @@ public class ScheduleMakerPage extends Fragment implements TimePickerDialog.OnTi
         }
         else if(flag) {
             Pattern pattern=Pattern.compile(":");
-            String arr[]=pattern.split(p);
+            String[] arr =pattern.split(p);
             if(hourOfDay>Integer.parseInt(arr[0])||hourOfDay==Integer.parseInt(arr[0])&&minute>Integer.parseInt(arr[1])) {
                 s=p+"-";
                 if(hourOfDay<10)
